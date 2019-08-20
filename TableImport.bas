@@ -15,7 +15,7 @@ OtherFirstCell = InputFirstCell()
 Performance = TogglePerformanceSettings(False)
 
 ImportStart = StartImport(ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, OtherFirstCell, _
-OtherTableColumns, MultipleSelection)
+MultipleSelection)
  
 Performance = TogglePerformanceSettings(True)
  
@@ -164,19 +164,18 @@ Function OpenWorkbook(ByVal MultipleSelection As Boolean, ByVal OtherPath As Str
 End Function
 
 Function StartImport(ByVal ThisWorksheetName As String, ByVal ThisFirstCell As String, ByVal ThisTableColumns As Variant, _
-ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstCell As String, ByVal OtherTableColumns As String, _
-ByVal IsMultipleSelection As Boolean)
+ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstCell As String, ByVal IsMultipleSelection As Boolean)
     If IsMultipleSelection = True Then
         GetImportMode = MultipleImport(ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, _
-        OtherFirstCell, OtherTableColumns)
+        OtherFirstCell)
     Else
         GetImportMode = SingleImport(ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, _
-        OtherFirstCell, OtherTableColumns)
+        OtherFirstCell)
     End If
 End Function
 
 Function MultipleImport(ByVal ThisWorksheetName As String, ByVal ThisFirstCell As String, ByVal ThisTableColumns As Variant, _
-ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstCell As String, ByVal OtherTableColumns As Variant)
+ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstCell As String)
     OtherWorkbookPath = Dir(OtherPath & "\" & "*.xls*")
     Do
         Workbooks.Open OtherPath & "\" & OtherWorkbookPath
@@ -192,7 +191,7 @@ ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstC
 End Function
 
 Function SingleImport(ByVal ThisWorksheetName As String, ByVal ThisFirstCell As String, ByVal ThisTableColumns As Variant, _
-ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstCell As String, ByVal OtherTableColumns As String)
+ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstCell As String)
     OtherWorkbookPath = OtherPath
     Workbooks.Open OtherWorkbookPath
     Set OtherWorkbook = ActiveWorkbook
