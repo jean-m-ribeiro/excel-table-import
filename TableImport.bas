@@ -1,10 +1,6 @@
 Attribute VB_Name = "TableImport"
 Sub RunTableImport()
 
-Application.DisplayAlerts = False
-Application.ScreenUpdating = False
-Application.Calculation = xlCalculationManual
-
 ThisWorksheetName = InputWorksheetName()
 ThisFirstCell = InputFirstCell()
 ThisTableColumns = ReadColumns(ThisFirstCell)
@@ -16,14 +12,25 @@ OtherOpenWorkbook = OpenWorkbook(MultipleSelection, OtherPath)
 OtherWorksheetName = InputWorksheetName()
 OtherFirstCell = InputFirstCell()
 
+Performance = TogglePerformanceSettings(False)
+
 ImportStart = StartImport(ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, OtherFirstCell, _
 OtherTableColumns, MultipleSelection)
  
-Application.DisplayAlerts = True
-Application.ScreenUpdating = True
-Application.Calculation = xlCalculationAutomatic
+Performance = TogglePerformanceSettings(True)
  
 End Sub
+
+Function TogglePerformanceSettings(ByVal Settings As Boolean)
+    If Settings = False Then
+        Application.Calculation = xlCalculationManual
+        Application.DisplayAlerts = False
+        Application.ScreenUpdating = False
+    Else
+        Application.Calculation = xlCalculationAutomatic
+        Application.DisplayAlerts = True
+        Application.ScreenUpdating = True
+End Function
 
 Function IsWorksheet(ByVal WorksheetName As String) As Boolean
     Dim ws As Worksheet
