@@ -19,7 +19,7 @@ OtherFirstCell = InputFirstCell()
 ImportStart = StartImport(ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, OtherFirstCell, _
 OtherTableColumns, MultipleSelection)
  
-Application.DisplayAlerts = True:
+Application.DisplayAlerts = True
 Application.ScreenUpdating = True
 Application.Calculation = xlCalculationAutomatic
  
