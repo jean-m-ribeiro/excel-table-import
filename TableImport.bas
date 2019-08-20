@@ -159,10 +159,10 @@ Function StartImport(ByVal ThisWorksheetName As String, ByVal ThisFirstCell As S
 ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstCell As String, ByVal OtherTableColumns As String, _
 ByVal IsMultipleSelection As Boolean)
     If IsMultipleSelection = True Then
-        GetImportMode = MultipleImport(ThisWorkbook, ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, _
+        GetImportMode = MultipleImport(ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, _
         OtherFirstCell, OtherTableColumns)
     Else
-        GetImportMode = SingleImport(ThisWorkbook, ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, _
+        GetImportMode = SingleImport(ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, _
         OtherFirstCell, OtherTableColumns)
     End If
 End Function
