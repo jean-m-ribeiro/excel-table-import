@@ -30,6 +30,7 @@ Function TogglePerformanceSettings(ByVal Settings As Boolean)
         Application.Calculation = xlCalculationAutomatic
         Application.DisplayAlerts = True
         Application.ScreenUpdating = True
+    End If
 End Function
 
 Function IsWorksheet(ByVal WorksheetName As String) As Boolean
