@@ -82,7 +82,8 @@ Function GetRangeAddress(ByVal FirstCellAddress As String, ByVal ColumnRelativeI
         If i = LBound(ColumnRelativeIndexArray) Then
             GetRangeAddress = Range(Cells(Range(FirstCellAddress).Row + 1, ColumnAbsoluteIndex), Cells(RowAbsoluteIndex, ColumnAbsoluteIndex)).Address
         Else
-            GetRangeAddress = GetRangeAddress & "," & Range(Cells(Range(FirstCellAddress).Row + 1, ColumnAbsoluteIndex), Cells(RowAbsoluteIndex, ColumnAbsoluteIndex)).Address
+            GetRangeAddress = GetRangeAddress & "," & _
+            Range(Cells(Range(FirstCellAddress).Row + 1, ColumnAbsoluteIndex), Cells(RowAbsoluteIndex, ColumnAbsoluteIndex)).Address
         End If
     Next i
     GetRangeAddress = Split(GetRangeAddress, ",")
@@ -153,17 +154,20 @@ Function OpenWorkbook(ByVal MultipleSelection As Boolean, ByVal OtherPath As Str
     End If
 End Function
 
-Function StartImport(ByVal ThisWorksheetName As String, ByVal ThisFirstCell As String, ByVal ThisTableColumns As Variant, ByVal OtherPath As String, ByVal OtherWorksheetName As String, _
-ByVal OtherFirstCell As String, ByVal OtherTableColumns As String, ByVal IsMultipleSelection As Boolean)
+Function StartImport(ByVal ThisWorksheetName As String, ByVal ThisFirstCell As String, ByVal ThisTableColumns As Variant, _
+ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstCell As String, ByVal OtherTableColumns As String, _
+ByVal IsMultipleSelection As Boolean)
     If IsMultipleSelection = True Then
-        GetImportMode = MultipleImport(ThisWorkbook, ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, OtherFirstCell, OtherTableColumns)
+        GetImportMode = MultipleImport(ThisWorkbook, ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, _
+        OtherFirstCell, OtherTableColumns)
     Else
-        GetImportMode = SingleImport(ThisWorkbook, ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, OtherFirstCell, OtherTableColumns)
+        GetImportMode = SingleImport(ThisWorkbook, ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, _
+        OtherFirstCell, OtherTableColumns)
     End If
 End Function
 
-Function MultipleImport(ByVal ThisWorksheetName As String, ByVal ThisFirstCell As String, ByVal ThisTableColumns As Variant, ByVal OtherPath As String, ByVal OtherWorksheetName As String, _
-ByVal OtherFirstCell As String, ByVal OtherTableColumns As Variant)
+Function MultipleImport(ByVal ThisWorksheetName As String, ByVal ThisFirstCell As String, ByVal ThisTableColumns As Variant, _
+ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstCell As String, ByVal OtherTableColumns As Variant)
     OtherWorkbookPath = Dir(OtherPath & "\" & "*.xls*")
     Do
         Workbooks.Open OtherPath & "\" & OtherWorkbookPath
@@ -178,8 +182,8 @@ ByVal OtherFirstCell As String, ByVal OtherTableColumns As Variant)
     Loop While OtherWorkbookPath <> ""
 End Function
 
-Function SingleImport(ByVal ThisWorksheetName As String, ByVal ThisFirstCell As String, ByVal ThisTableColumns As Variant, ByVal OtherPath As String, ByVal OtherWorksheetName As String, _
-ByVal OtherFirstCell As String, ByVal OtherTableColumns As String)
+Function SingleImport(ByVal ThisWorksheetName As String, ByVal ThisFirstCell As String, ByVal ThisTableColumns As Variant, _
+ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstCell As String, ByVal OtherTableColumns As String)
     OtherWorkbookPath = OtherPath
     Workbooks.Open OtherWorkbookPath
     Set OtherWorkbook = ActiveWorkbook
@@ -191,7 +195,8 @@ ByVal OtherFirstCell As String, ByVal OtherTableColumns As String)
     CopyPaste = StartCopyPaste(OtherWorkbook, ColumnsIndex, RangeAddress, ThisFirstCell)
 End Function
 
-Function StartCopyPaste(ByVal OtherWorkbook As Workbook, ByVal ColumnsIndex As Variant, ByVal RangeAddress As Variant, ByVal ThisFirstCell As String)
+Function StartCopyPaste(ByVal OtherWorkbook As Workbook, ByVal ColumnsIndex As Variant, ByVal RangeAddress As Variant, _
+ByVal ThisFirstCell As String)
     ThisWorkbook.Activate
     TableRows = CountTableRows(ThisFirstCell)
     For i = LBound(RangeAddress) To UBound(RangeAddress)
