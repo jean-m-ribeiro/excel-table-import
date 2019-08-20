@@ -1,7 +1,7 @@
-Attribute VB_Name = "MÛdulo1"
+Attribute VB_Name = "TableImport"
 Sub data_table_import()
 
-'Altera configuraÁıes para aumentar a velocidade de execuÁ„o da macro'
+'Altera configura√ß√µes para aumentar a velocidade de execu√ß√£o da macro'
 Application.DisplayAlerts = False: Application.ScreenUpdating = False: Application.Calculation = xlCalculationManual
 
 Set this_workbook = ActiveWorkbook
@@ -18,7 +18,7 @@ other_first_cell = input_first_cell()
 
 import = start_import(this_workbook, this_worksheet_name, this_first_cell, this_table_columns, other_path, other_worksheet_name, other_first_cell, other_table_columns, multiple_selection)
  
- 'Restaura configuraÁıes padr„o'
+ 'Restaura configura√ß√µes padr√£o'
 Application.DisplayAlerts = True: Application.ScreenUpdating = True: Application.Calculation = xlCalculationAutomatic
  
 End Sub
@@ -49,7 +49,7 @@ Function is_cell_empty(ByVal cell_address As String) As Boolean
 End Function
 
 Function is_multiple_selection() As Boolean
-    answer = MsgBox("A importaÁ„o de dados ser· feita de todos arquivos dentro de uma pasta?", vbYesNo)
+    answer = MsgBox("A importa√ß√£o de dados ser√° feita de todos arquivos dentro de uma pasta?", vbYesNo)
     If answer = vbYes Then is_multiple_selection = True Else is_multiple_selection = False
 End Function
 
@@ -93,7 +93,7 @@ Function input_worksheet_name() As Variant
         If input_worksheet_name = False Then Exit Do
             worksheet_exists = is_worksheet(input_worksheet_name)
         If worksheet_exists = False Then
-            error_msg = MsgBox("Esta planilha n„o existe na pasta de trabalho atual.", vbExclamation, "Erro")
+            error_msg = MsgBox("Esta planilha n√£o existe na pasta de trabalho atual.", vbExclamation, "Erro")
         End If
     Loop
     Sheets(input_worksheet_name).Activate
@@ -101,14 +101,14 @@ End Function
 
 Function input_first_cell() As String
     Do
-        input_first_cell = Application.InputBox("Digite a coluna e a linha da primeira cÈlula da tabela para onde os dados devem ser importados")
+        input_first_cell = Application.InputBox("Digite a coluna e a linha da primeira c√©lula da tabela para onde os dados devem ser importados")
         If input_first_cell = "" Then End
         check_cell = is_cell(input_first_cell)
         If check_cell = False Then
-            error_msg = MsgBox("Esta cÈlula n„o existe.", vbExclamation, "Erro")
+            error_msg = MsgBox("Esta c√©lula n√£o existe.", vbExclamation, "Erro")
         Else
             first_cell_empty = is_cell_empty(input_first_cell)
-            If first_cell_empty = True Then error_msg = MsgBox("Esta cÈlula est· vazia.", vbExclamation, "Erro")
+            If first_cell_empty = True Then error_msg = MsgBox("Esta c√©lula est√° vazia.", vbExclamation, "Erro")
         End If
     Loop Until check_cell = True And first_cell_empty = False
 End Function
