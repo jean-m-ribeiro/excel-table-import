@@ -16,7 +16,8 @@ OtherOpenWorkbook = OpenWorkbook(MultipleSelection, OtherPath)
 OtherWorksheetName = InputWorksheetName()
 OtherFirstCell = InputFirstCell()
 
-ImportStart = StartImport(ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, OtherFirstCell, OtherTableColumns, MultipleSelection)
+ImportStart = StartImport(ThisWorksheetName, ThisFirstCell, ThisTableColumns, OtherPath, OtherWorksheetName, OtherFirstCell, _
+OtherTableColumns, MultipleSelection)
  
 Application.DisplayAlerts = True:
 Application.ScreenUpdating = True
