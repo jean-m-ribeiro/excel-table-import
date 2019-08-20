@@ -1,2 +1,14 @@
 # excel-table-import
-VBA Macro to import tables from one workbook to another
+### Description
+VBA Macro that imports the columns chosen from data source table.
+### Tutorial
+- Write the columns that you want from the data source on your worksheet
+- Run the macro
+- Write the worksheet name that will store the data
+- Write the first cell address of the table that will store the data
+- Answer if will be a selection from all .xls* files in a folder or just one file
+- Select the folder or file
+- Write the worksheet name that will be the data source
+- Write the first cell address of the table that will be the data source
+
+**If the answer is yes for the folder selection, then all data source's worksheet names and first cells must be equal**
