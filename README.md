@@ -11,5 +11,3 @@ VBA Macro that imports the columns chosen from data source table.
 - Select the folder or file
 - Write the worksheet name that will be the data source
 - Write the first cell address of the table that will be the data source
-
-**If the answer is yes for the folder selection, then all data source's worksheet names and first cells must be equal**
