@@ -1,4 +1,4 @@
-Attribute VB_Name = "TableImport_en"
+Attribute VB_Name = "TableImport_pt_br"
 Sub RunTableImport()
 
 ThisWorksheetName = InputWorksheetName()
@@ -67,12 +67,12 @@ Function IsCellEmpty(ByVal CellAddress As String) As Boolean
 End Function
 
 Function IsMultipleSelection() As Boolean
-    Answer = MsgBox("The data will be imported from more than one file?", vbYesNo + vbInformation)
+    Answer = MsgBox("Os dados serão importados de mais de um arquivo?", vbYesNo)
     If Answer = vbYes Then IsMultipleSelection = True Else IsMultipleSelection = False
 End Function
 
 Function IsMultipleSelectionSameSettings() As Boolean
-    Answer = MsgBox("All data source workbook's worksheet name and table first cell are the same?", vbYesNo + vbInformation)
+    Answer = MsgBox("Todos os nomes de planilha e as primeiras células de tabela são iguais para as pastas de trabalho fontes dos dados?", vbYesNo + vbInformation)
     If Answer = vbYes Then IsMultipleSelectionSameSettings = True Else IsMultipleSelectionSameSettings = False
 End Function
 
@@ -113,11 +113,11 @@ End Function
 
 Function InputWorksheetName() As Variant
     Do Until WorksheetExists = True
-        InputWorksheetName = Application.InputBox("Write the Worksheet name to be used")
+        InputWorksheetName = Application.InputBox("Digite o nome da planilha que será utilizada")
         If InputWorksheetName = False Then Exit Do
             WorksheetExists = IsWorksheet(InputWorksheetName)
         If WorksheetExists = False Then
-            ErrorMsg = MsgBox("This Worksheet does not exist in the actual Workbook.", vbExclamation, "Error")
+            ErrorMsg = MsgBox("Esta planilha não existe na pasta de trabalho atual.", vbExclamation, "Erro")
         End If
     Loop
     Sheets(InputWorksheetName).Activate
@@ -125,14 +125,14 @@ End Function
 
 Function InputFirstCell() As String
     Do
-        InputFirstCell = Application.InputBox("Write the first cell address from the table to be used")
+        InputFirstCell = Application.InputBox("Digite a primeira célula da tabela que será utilizada")
         If InputFirstCell = "" Then End
         CheckCell = IsCell(InputFirstCell)
         If CheckCell = False Then
-            ErrorMsg = MsgBox("This cell does not exist.", vbExclamation, "Error")
+            ErrorMsg = MsgBox("Esta célula não existe.", vbExclamation, "Erro")
         Else
             FirstCellEmpty = IsCellEmpty(InputFirstCell)
-            If FirstCellEmpty = True Then ErrorMsg = MsgBox("This cell is empty.", vbExclamation, "Error")
+            If FirstCellEmpty = True Then ErrorMsg = MsgBox("Esta célula está vazia.", vbExclamation, "Erro")
         End If
     Loop Until CheckCell = True And FirstCellEmpty = False
 End Function
@@ -147,7 +147,7 @@ End Function
 
 Function SelectMultipleFiles() As String
     With Application.FileDialog(msoFileDialogFolderPicker)
-        .Title = "Select a folder"
+        .Title = "Selecione uma pasta"
         .AllowMultiSelect = False
         .InitialFileName = Application.DefaultFilePath
         If .Show = -1 Then
@@ -158,7 +158,7 @@ End Function
 
 Function SelectSingleFile() As String
     With Application.FileDialog(msoFileDialogFilePicker)
-        .Title = "Select a file"
+        .Title = "Selecione um arquivo"
         .AllowMultiSelect = False
         .InitialFileName = Application.DefaultFilePath
         If .Show <> 0 Then
@@ -234,3 +234,5 @@ ByVal ThisFirstCell As String)
     Next i
     OtherWorkbook.Close
 End Function
+
+
