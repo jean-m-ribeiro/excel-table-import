@@ -210,7 +210,7 @@ ByVal MultipleSelectionSameSettings As Boolean)
 End Function
 
 Function SingleImport(ByVal ThisWorksheetName As String, ByVal ThisFirstCell As String, ByVal ThisTableColumns As Variant, _
-ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstCell As String, ByVal OtherTableColumns As String)
+ByVal OtherPath As String, ByVal OtherWorksheetName As String, ByVal OtherFirstCell As String, ByVal OtherTableColumns As Variant)
     OtherWorkbookPath = OtherPath
     Workbooks.Open OtherWorkbookPath
     Set OtherWorkbook = ActiveWorkbook
