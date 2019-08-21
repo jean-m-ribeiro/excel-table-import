@@ -67,12 +67,12 @@ Function IsCellEmpty(ByVal CellAddress As String) As Boolean
 End Function
 
 Function IsMultipleSelection() As Boolean
-    Answer = MsgBox("Os dados ser„o importados de mais de um arquivo?", vbYesNo)
+    Answer = MsgBox("Os dados ser√£o importados de mais de um arquivo?", vbYesNo + vbInformation)
     If Answer = vbYes Then IsMultipleSelection = True Else IsMultipleSelection = False
 End Function
 
 Function IsMultipleSelectionSameSettings() As Boolean
-    Answer = MsgBox("Todos os nomes de planilha e as primeiras cÈlulas de tabela s„o iguais para as pastas de trabalho fontes dos dados?", vbYesNo + vbInformation)
+    Answer = MsgBox("Todos os nomes de planilha e as primeiras c√©lulas de tabela s√£o iguais para as pastas de trabalho fontes dos dados?", vbYesNo + vbInformation)
     If Answer = vbYes Then IsMultipleSelectionSameSettings = True Else IsMultipleSelectionSameSettings = False
 End Function
 
@@ -113,11 +113,11 @@ End Function
 
 Function InputWorksheetName() As Variant
     Do Until WorksheetExists = True
-        InputWorksheetName = Application.InputBox("Digite o nome da planilha que ser· utilizada")
+        InputWorksheetName = Application.InputBox("Digite o nome da planilha que ser√° utilizada")
         If InputWorksheetName = False Then Exit Do
             WorksheetExists = IsWorksheet(InputWorksheetName)
         If WorksheetExists = False Then
-            ErrorMsg = MsgBox("Esta planilha n„o existe na pasta de trabalho atual.", vbExclamation, "Erro")
+            ErrorMsg = MsgBox("Esta planilha n√£o existe na pasta de trabalho atual.", vbExclamation, "Erro")
         End If
     Loop
     Sheets(InputWorksheetName).Activate
@@ -125,14 +125,14 @@ End Function
 
 Function InputFirstCell() As String
     Do
-        InputFirstCell = Application.InputBox("Digite a primeira cÈlula da tabela que ser· utilizada")
+        InputFirstCell = Application.InputBox("Digite a primeira c√©lula da tabela que ser√° utilizada")
         If InputFirstCell = "" Then End
         CheckCell = IsCell(InputFirstCell)
         If CheckCell = False Then
-            ErrorMsg = MsgBox("Esta cÈlula n„o existe.", vbExclamation, "Erro")
+            ErrorMsg = MsgBox("Esta c√©lula n√£o existe.", vbExclamation, "Erro")
         Else
             FirstCellEmpty = IsCellEmpty(InputFirstCell)
-            If FirstCellEmpty = True Then ErrorMsg = MsgBox("Esta cÈlula est· vazia.", vbExclamation, "Erro")
+            If FirstCellEmpty = True Then ErrorMsg = MsgBox("Esta c√©lula est√° vazia.", vbExclamation, "Erro")
         End If
     Loop Until CheckCell = True And FirstCellEmpty = False
 End Function
